@@ -45,7 +45,6 @@ class Solution
         
         int ans = s.top();
         
-        bool rowcheck = false;
         int rowcount = 0;
         for(int i =0; i<n; i++)
         {
@@ -53,10 +52,9 @@ class Solution
                 rowcount++;
             }
         }
-        if(rowcount == n)
-        rowcheck = true;
+        if(rowcount != n)
+        return -1;
         
-        bool colcheck = false;
         int colcount = 0;
         for(int i =0; i<n; i++)
         {
@@ -65,14 +63,11 @@ class Solution
                 colcount++;
             }
         }
-        if(colcount == n-1)
-        colcheck = true;
-        
-        if(rowcheck == true && colcheck == true)
-        return ans;
-        
-        else
+        if(colcount != n-1)
         return -1;
+        
+        return ans;
+
     }
 };
 
