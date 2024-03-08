@@ -1,21 +1,24 @@
 class Solution {
-public:
-    bool isPowerOfTwo(int n) {
-        int s = 0;
-        int e = n;
+bool calc(int n, int s, int e)
+{
         int m = s + (e-s)/2;
-        while(s < e){
+        while(s < e)
+        {
             if(pow(2,m) == n){
                 return true;
             }
             else if(pow(2,m) <n){
-                s = m +1;
+                return calc(n, m + 1, e);
             }
             else
-                e = m;
-
-            m = s + (e-s)/2;
+                return calc(n, s, m);
         }
-        return false;
+    return false;
+}
+public:
+    bool isPowerOfTwo(int n) {
+        int s = 0;
+        int e = n;
+        return calc(n, s, e);
     }
 };
