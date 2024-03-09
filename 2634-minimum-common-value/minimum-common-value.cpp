@@ -1,21 +1,16 @@
 class Solution {
 public:
     int getCommon(vector<int>& nums1, vector<int>& nums2) {
-        int common  = -1;
-        int i = 0;
-        int j = 0;
-        while( i < nums1.size() && j < nums2.size()){
-            if(nums1[i] == nums2[j]){
-                common = nums1[i];
-                break;
-            }
-            else if(nums1[i] > nums2[j]){
-                j++;
-            }
-            else{
-                i++;
+        int ans = -1;
+        set<int>st;
+        for(auto i: nums1){
+            st.insert(i);
+        }
+        for(auto i : nums2){
+            if(st.count(i) == 1){
+                return i;
             }
         }
-        return common;
+    return ans;
     }
 };
