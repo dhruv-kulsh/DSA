@@ -10,13 +10,17 @@ class Solution {
 public:
     bool hasCycle(ListNode *head) {
         if(head == NULL) return false;
-        ListNode *temp = head;
-        map<ListNode*, int>mp;
-        while(temp != NULL){
-            mp[temp]++;
-            temp = temp->next;
-            if(mp[temp] == 2)
-            return true;
+        if(head->next == NULL) return false;
+        ListNode *slow = head;
+        ListNode *fast = head;
+
+        while(fast != NULL){
+            slow = slow->next;
+            fast = fast->next;
+            if(fast != NULL)
+            fast = fast->next;
+            if(slow == fast) return true;
+            // cout<<slow->val<<" "<<fast->val<<endl;
         }
         return false;
     }
