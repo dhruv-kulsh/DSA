@@ -1,5 +1,8 @@
 class Solution {
-    vector<int> pascal(int numRows, int k){
+    vector<vector<int>> pascal(int numRows, int k, vector<vector<int>>&result){
+        if(k > numRows){
+            return result;
+        }
         vector<int>temp;
         temp.push_back(1);
         int ans = 1;
@@ -8,17 +11,16 @@ class Solution {
             ans = ans/i;
             temp.push_back(ans);
         }
-        return temp;
+        result.push_back(temp);
+        return pascal(numRows, k+1, result);
     }
 public:
     vector<vector<int>> generate(int numRows) {
-        vector<vector<int>>ans;
+        vector<vector<int>>result;
         vector<int>init = {1};
-        ans.push_back(init);
-        for(int k = 2; k<= numRows; k++){
-            vector<int>temp = pascal(numRows, k);
-            ans.push_back(temp);
-        }
-        return ans;
+        result.push_back(init);
+        int k = 2;
+        vector<vector<int>>ans = pascal(numRows, k, result);
+        return result;
     }
 };
