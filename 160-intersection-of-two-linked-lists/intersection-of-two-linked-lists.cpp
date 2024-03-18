@@ -9,18 +9,17 @@
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        map<ListNode*, int>mp;
-        while(headA != NULL){
-            mp[headA]++;
-            headA = headA->next;
-        }
-        while(headB != NULL){
-            mp[headB]++;
-            headB = headB->next;
-        }
-
-        for(auto i: mp){
-            if(i.second == 2) return i.first;
+        ListNode *head1 = headA;
+        ListNode *head2 = headB;
+        while(head2 != NULL)
+        {
+            head1 = headA;
+            while(head1 != NULL)
+            {
+                if(head2 == head1) return head1;
+                head1 = head1->next;
+            }
+            head2 = head2->next;
         }
         return NULL;
     }
