@@ -1,34 +1,32 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        vector<int>nums;
-        map<int, int>mp;
-        for(int i = 0; i < nums2.size()-1; i++)
-        {
-            int ans_flag = -1;
-            for(int j = i+1; j < nums2.size(); j++ )
-            {
-                if(nums2[j] > nums2[i]){
-                    ans_flag = 1;
-                    nums.push_back(nums2[j]);
-                    break;
-                }
+        int n = nums2.size();
+        stack<int> st;
+        map<int, int> mp;
+        for (int i = n - 1; i >= 0; i--) {
+            int elem = nums2[i];
+            while (!st.empty() && st.top() < elem)
+                st.pop();
+            if (st.empty()) {
+                mp[elem] = -1;
+            } else {
+                int top = st.top();
+                mp[elem] = top;
             }
-            if(ans_flag == -1){
-                nums.push_back(-1);
-            }
-        }
-        nums.push_back(-1);
 
-        for(int i = 0; i < nums2.size(); i++){
-            mp[nums2[i]] = nums[i];
+            st.push(elem);
         }
-        vector<int>ans(nums1.size());
-        for(int i = 0; i < nums1.size(); i++)
-        {
+
+        for (auto i : mp) {
+            cout << i.first << " " << i.second<<endl;
+        }
+        
+        vector<int> ans(nums1.size());
+        for(int i = 0; i < nums1.size(); i++){
             ans[i] = mp[nums1[i]];
-            // ans.push_back(mp[nums1[i]]);
         }
+
         return ans;
     }
 };
