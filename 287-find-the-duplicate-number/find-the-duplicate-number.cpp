@@ -4,13 +4,13 @@ public:
         int slow = nums[0];
         int fast = nums[0];
         do{
+            cout<<slow<<" "<<fast<<endl;
             slow = nums[slow];
             fast = nums[nums[fast]];
-            cout<<slow<<" "<<fast<<endl;
         }while(slow != fast);
-        
+
         slow = nums[0];
-        while(fast != slow){
+        while(slow != fast){
             slow = nums[slow];
             fast = nums[fast];
         }
