@@ -37,7 +37,6 @@ public:
     }
     int diameterOfBinaryTree(TreeNode* root) {
         
-        return diameterFast(root).first -
-         1;
+        return diameterFast(root).first - 1;
     }
 };
