@@ -20,19 +20,17 @@ public:
     bool findTarget(TreeNode* root, int k) {
         vector<int>vec;
         traverse(root, vec);
-        map<int, int>mp;
-        bool found = false;
-        for(int i = 0; i < vec.size(); i++){
-            int to_find = k - vec[i];
-            if(mp.find(to_find) == mp.end())
-            {
-                mp[vec[i]] = i;
+        int i = 0;
+        int j = vec.size() -1;
+        while (i < j){
+            if(vec[i] + vec[j] == k){
+                return true;
             }
-            else{
-                found = true;
+            else if(vec[i] + vec[j] < k){
+                i++;
             }
+            else j--;
         }
-        if(found) return true;
         return false;
     }
 };
