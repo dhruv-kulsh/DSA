@@ -1,19 +1,19 @@
 class Solution {
 public:
     int findMaxK(vector<int>& nums) {
-        int maxi = -1;
-        map<int,int>mp;
-        for(int i = 0; i <nums.size(); i++)
+        sort(nums.begin(), nums.end());
+        int st = 0;
+        int end = nums.size()-1;
+        while( st < end && nums[st] < 0)
         {
-            int no = nums[i];
-            if(mp.find(-no) != mp.end()){
-                maxi = max(abs(no), maxi);
+            if(nums[st] + nums[end] == 0) return nums[end];
+            if(nums[st] + nums[end] > 0){
+                end--;
             }
             else{
-                mp[no]++;
+                st++;
             }
         }
-        return maxi;
-        
+        return -1;
     }
 };
