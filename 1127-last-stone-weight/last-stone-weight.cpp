@@ -17,30 +17,21 @@ public:
             pq.push(stones[i]);
         }
 
-        while(pq.size() > 2){
+        while(pq.size() > 1){
             int top1 = pq.top();
             pq.pop();
 
             int top2 = pq.top();
             pq.pop();
 
-            if(top1 != top2){
+            if(top1 != top2)
+            {
                 int newWeight = calcAbs(top1, top2);
                 pq.push(newWeight);
             }
         }
 
         if(pq.size() == 1) return pq.top();
-        int top1 = pq.top();
-        pq.pop();
-
-        int top2 = pq.top();
-        pq.pop();
-
-        if(top1 != top2){
-                int newWeight = calcAbs(top1, top2);
-        return newWeight;
-            }
-            return 0;
+        return 0;
     }
 };
